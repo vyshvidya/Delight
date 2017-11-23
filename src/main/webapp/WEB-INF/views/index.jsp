@@ -27,8 +27,7 @@ background-color: white;
 <jsp:include page="header.jsp"></jsp:include>
 <div class="container-fluid">
 
-<h2><i>Delight</i></h2>
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+ <div id="myCarousel" class="carousel slide" data-ride="carousel">
 <ol class="carousel-indicators">
 <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
 <li data-target="#myCarousel2" data-slide-to="1" class="active"></li>
@@ -38,19 +37,19 @@ background-color: white;
 <div class="carousel-inner">
 <div class="item active">
 <img class="img-rounded" class="img-responsive center-block" 
-src="resources/rc4.jpg" style="width:100%" >
+src="resources/rc4.jpg" style="width:1280px" "height=360px">
  </div>
 
 
 
 <div class="item">
 <img class="img-rounded" class="img-responsive center-block"
-src="resources/rc5.jpg" style="width:100%">
+src="resources/rc5.jpg" style="width:1280px" "height=360px">
 </div>
 
 <div class="item">
 <img class="img-rounded" class="img-responsive center-block"
-src="resources/rc6.jpg" style="width:100%">
+src="resources/rc6.jpg" style="width:1280px" "height=360px">
 </div>
 </div>
 
@@ -64,9 +63,10 @@ src="resources/rc6.jpg" style="width:100%">
 <span class="sr-only">Next</span>
 </a>
 
+ 
+</div>
+</div>
 
-</div>
-</div>
 </body>
 </html>
 

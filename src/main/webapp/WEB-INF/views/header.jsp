@@ -10,9 +10,11 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js""></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<c:url value="/resources/js/formValidationScript.js" var="valid" ></c:url>
+<script src="${valid}"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Header-GameCom</title>
+<title>Delight</title>
 </head>
 <body>
 
@@ -32,18 +34,15 @@
 
 	<ul class="nav navbar-nav">
 
-	<c:url value="/home" var="home" ></c:url>
+	<c:url value="/" var="home" ></c:url>
 	<li><a href="${home}"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
 	
-	<c:url value="/admin/adding" var="add" ></c:url>
-	<li><a href="${add}">Admin</a></li>
-
+	<c:if test="${pageContext.request.userPrincipal.name == null}">
   	<c:url value="/register" var="reg" ></c:url>
 	<li><a href="${reg}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
- 
  	<c:url value="/login" var="log"></c:url>
 	<li><a href="${log}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li> 
-
+	</c:if>
 	<c:url value="/product" var="prod"></c:url>
 	<li><a href="${prod}"><i class="fa fa-product-hunt" aria-hidden="true"></i>Product</a></li>
 
@@ -52,6 +51,12 @@
 
 	<c:url value="/supplier" var="sup"></c:url>
 	<li><a href="${sup}">Supplier</a></li>
+	<c:if test="${pageContext.request.userPrincipal.name != null}">
+ 	
+	<c:url value="/j_spring_security_logout" var="logout" ></c:url>
+	<li><a href="${logout}"><i class="fa fa-user-plus" aria-hidden="true"></i>Logout</a></li>
+	</c:if>
+ 
  	
  	</ul>
 
