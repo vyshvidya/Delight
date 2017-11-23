@@ -87,12 +87,14 @@ try
 		try
     
 	{
+			Session session=sessionFactory.openSession();
 	sessionFactory.getCurrentSession().saveOrUpdate(category);
+	session.close();
 	return true;
     }
      catch(Exception e)
     {
-    	 System.out.println("Exception Arised:"+e);
+ 	 System.out.println("Exception Arised:"+e);
 		return false;
 	}
 

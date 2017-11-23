@@ -2,6 +2,8 @@ package com.DaoImpl;
 
 import java.util.List;
 
+
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,21 +12,27 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Dao.SupplierDAO;
-import com.model.Product;
+
 import com.model.Supplier;
 @Repository("SupplierDAO")
 public class SupplierDAOImpl implements SupplierDAO
 {
 	@Autowired
 	SessionFactory sessionFactory;
-
+	
+	public SupplierDAOImpl(SessionFactory sessionFac)
+	{
+		   super();
+		   sessionFac=sessionFactory;
+	   }
+	
 	@Transactional
 	public boolean addSupplier(Supplier supplier) 
 	{
 try
 	    
 		{
-		sessionFactory.getCurrentSession().save(supplier);
+		sessionFactory.getCurrentSession().saveOrUpdate(supplier);
 
 	
 		return true;
@@ -50,24 +58,7 @@ try
 		// TODO Auto-generated method stub
 		
 	
-	@Transactional
-	public boolean deletesupplier(Supplier supplier) 
-	{
-try
-	    
-		{
-		sessionFactory.getCurrentSession().delete(supplier);
-
 	
-		return true;
-	    }
-	     catch(Exception e)
-	    {
-
-		// TODO Auto-generated method stub
-		return false;
-	}
-	}
 	@Transactional
 	public Supplier getSupplier(int SupplierId) 
 	{
@@ -87,7 +78,10 @@ try
 		try
 	    
 		{
+		Session session=sessionFactory.openSession();
 		sessionFactory.getCurrentSession().saveOrUpdate(supplier);
+		session.close();
+
 		return true;
 		}
 		 catch(Exception e)
@@ -96,14 +90,13 @@ try
 			return false;
 		}
 	}
-		// TODO Auto-generated method stub
-		
+	
 	@Transactional
-	public boolean deleteSupplier(Supplier supplier) 
-	{
+	public boolean deleteSupplier(Supplier supplier) {
 try
 	    
 		{
+	
 		sessionFactory.getCurrentSession().delete(supplier);
 
 	
@@ -111,8 +104,13 @@ try
 	    }
 	     catch(Exception e)
 	    {
-			return false;
-		}
+
+		// TODO Auto-generated method stub
+		return false;
 	}
-}
+	}
+		
+		
+		
+	}
 

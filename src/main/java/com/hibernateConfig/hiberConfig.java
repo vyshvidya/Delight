@@ -3,6 +3,7 @@
 
 import java.util.Properties;
 
+
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
@@ -17,10 +18,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.Dao.UserDao;
 import com.DaoImpl.UserDaoImpl;
+import com.model.BillingAddress;
+import com.model.Cart;
+import com.model.CartItem;
 import com.model.Category;
+import com.model.Customer;
+import com.model.CustomerOrder;
 import com.model.Product;
+import com.model.ShippingAddress;
 import com.model.Supplier;
-import com.model.User;
 
 
 
@@ -60,10 +66,16 @@ public SessionFactory getSession(DataSource datasource)
 {
 		LocalSessionFactoryBuilder sb = new LocalSessionFactoryBuilder(datasource);
 		sb.addProperties(getHiberProps());
-		sb.addAnnotatedClass(User.class);
+		sb.addAnnotatedClass(Customer.class);
 		sb.addAnnotatedClass(Category.class);
 		sb.addAnnotatedClass(Product.class);
 		sb.addAnnotatedClass(Supplier.class);
+		sb.addAnnotatedClass(Cart.class);
+		sb.addAnnotatedClass(CartItem.class);
+		sb.addAnnotatedClass(CustomerOrder.class);
+		sb.addAnnotatedClass(ShippingAddress.class);
+		sb.addAnnotatedClass(BillingAddress.class);
+		
 		SessionFactory sessionFactory=sb.buildSessionFactory();
 		System.out.println("session Factory is started");
 		return sessionFactory;
@@ -71,7 +83,7 @@ public SessionFactory getSession(DataSource datasource)
 
 
 @Autowired
-@Bean(name="UserDaoImpl")
+@Bean(name="userDaoImpl")
 public UserDao getUserData(SessionFactory sessionFac)
 {
 	return new UserDaoImpl(sessionFac);

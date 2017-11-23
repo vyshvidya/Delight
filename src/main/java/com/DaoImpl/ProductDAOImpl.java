@@ -2,6 +2,8 @@ package com.DaoImpl;
 
 import java.util.List;
 
+
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,21 +12,25 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Dao.ProductDAO;
-import com.model.Category;
+
 import com.model.Product;
 @Repository("ProductDAO")
 public class ProductDAOImpl implements ProductDAO
 {
 	@Autowired
 	SessionFactory sessionFactory;
-	
+	public ProductDAOImpl(SessionFactory sessionFac)
+	{
+		   super();
+		   sessionFac=sessionFactory;
+	   }
 	@Transactional
 	public boolean addProduct(Product product) 
 	{
 try
 	    
 		{
-		sessionFactory.getCurrentSession().save(product);
+		sessionFactory.getCurrentSession().saveOrUpdate(product);
 
 	
 		return true;
